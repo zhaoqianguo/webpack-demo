@@ -4,7 +4,7 @@ import './global.css';
 import printMe from './print.js';
 
 function component() {
-  const ele = document.getElementById('root');
+  const ele = document.createElement('div');
   const btn = document.createElement('button');
 
   ele.innerHTML = _.join(['Hello', 'webpack', '是我demo'], ' ');

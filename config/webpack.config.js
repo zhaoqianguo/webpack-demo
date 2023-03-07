@@ -11,8 +11,15 @@ module.exports = {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, '../dist'),
     clean: true,
+    publicPath: '/',
   },
+  // 配置source map
   devtool: 'inline-source-map',
+  // 配置开发服务器
+  devServer: {
+    static: './dist',
+  },
+  // 模块系统配置
   module: {
     rules: [
       {
@@ -29,6 +36,7 @@ module.exports = {
       },
     ],
   },
+  // 插件系统配置
   plugins: [
     new HtmlWebpackPlugin({
       title: '管理输出',
