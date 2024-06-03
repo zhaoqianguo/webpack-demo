@@ -9,7 +9,7 @@ const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 
 const app = express();
-const config = require('./config/webpack.config');
+const config = require('./config/webpack.dev');
 const compiler = webpack(config);
 
 // 告知 express 使用 webpack-dev-middleware，
