@@ -8,9 +8,18 @@ module.exports = {
     index: './src/index.tsx',
   },
   output: {
-    filename: '[name].[contenthash].js',
     path: path.resolve(__dirname, '../dist'),
+    filename: '[name].[contenthash].js',
+    libraryTarget: 'umd',
     clean: true,
+    publicPath: '/',
+  },
+  externals: {
+    lodash: {
+      commonjs: 'lodash',
+      amd: 'lodash',
+      root: '_', // 指向全局变量
+    },
   },
   experiments: {
     topLevelAwait: true,
@@ -52,9 +61,35 @@ module.exports = {
   // 模块系统配置
   module: {
     rules: [
+      // css
       {
         test: /\.css$/i,
-        use: ['style-loader', 'css-loader'],
+        use: ['style-loader', 'postcss-loader'],
+      },
+      {
+        // less处理
+        test: /\.less$/,
+        exclude: /(node_modules|bower_components)/,
+        use: [
+          // 将 css-loader 提交的 css 内存文件放入 <style>...</style> 字符串中，写入引用的js文件
+          'style-loader',
+          {
+            // 解析 less 提交的 css 内存文件，
+            // 通过模块化的方式将css文件中的class名称编译成一个规则的hash字符串，
+            // 并将这些字符串与模块化的css引用对象的key相对应，即变成该对象的值，
+            // 最后将洗过的 css 内存文件提交给 style-loader
+            loader: 'css-loader',
+            options: {
+              modules: {
+                localIdentName: '[name]_[local]_[hash:base64:5]',
+              },
+            },
+          },
+          {
+            // 解析合并 less 文件内容，生成 css 内存文件，并提交给上一步 css-loader
+            loader: 'less-loader',
+          },
+        ],
       },
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
@@ -67,6 +102,25 @@ module.exports = {
           loader: 'babel-loader',
         },
         exclude: '/node_modules',
+      },
+      // file
+      {
+        test: /\.(eot|otf|ttf|woff|woff2)$/,
+        use: 'file-loader',
+      },
+      // svg
+      {
+        test: /\.svg$/,
+        use: [
+          {
+            loader: 'svg-url-loader',
+            options: {
+              // Inline files smaller than 10 kB
+              limit: 10 * 1024,
+              noquotes: true,
+            },
+          },
+        ],
       },
     ],
   },
