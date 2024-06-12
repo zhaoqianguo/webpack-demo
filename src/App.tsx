@@ -3,6 +3,7 @@ import { Route, Routes, Link, Outlet } from 'react-router-dom';
 import { Layout } from '@/layout';
 import { Home } from '@/pages/home';
 import { About } from '@/pages/about';
+import { TodoList } from '@/pages/todoList';
 
 const App = () => {
   return (
@@ -13,6 +14,7 @@ const App = () => {
           <Route index element={'a34a'}></Route>
         </Route>
         <Route path="dashboard" element={'dashbord'} />
+        <Route path="todo-list" element={<TodoList />} />
         <Route
           path="sub1"
           element={

@@ -5,6 +5,7 @@ import {
   ContainerOutlined,
   MailOutlined,
   AppstoreOutlined,
+  UnorderedListOutlined,
 } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
 
@@ -13,6 +14,7 @@ type MenuItem = Required<MenuProps>['items'][number];
 export const items: MenuItem[] = [
   { key: '/home', icon: <PieChartOutlined />, label: '主页' },
   { key: '/dashboard', icon: <ContainerOutlined />, label: '仪表盘' },
+  { key: '/todo-list', icon: <UnorderedListOutlined />, label: '待办列表' },
   {
     key: 'sub1',
     label: 'Navigation One',

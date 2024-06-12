@@ -65,3 +65,20 @@ input {
 .clearfix::after {
   clear: both;
 }
+
+html ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+/*定义滚动条的轨道，内阴影及圆角*/
+html ::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+
+/*定义滑块，内阴影及圆角*/
+html ::-webkit-scrollbar-thumb {
+  height: 8px;
+  border-radius: 10px;
+  background-color: #aaa;
+}
