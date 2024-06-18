@@ -28,7 +28,7 @@ module.exports = merge(webpackCommon, {
   plugins: [new ReactRefreshWebpackPlugin()],
 
   // 配置source map
-  devtool: 'inline-source-map',
+  devtool: 'source-map',
   // 配置开发服务器
   devServer: {
     // 刷新时，让当前域名下的url访问 index.html

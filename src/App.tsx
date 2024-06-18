@@ -1,9 +1,11 @@
 import React from 'react';
-import { Route, Routes, Link, Outlet } from 'react-router-dom';
+import { Route, Routes, Link, Outlet, useMatch, useResolvedPath } from 'react-router-dom';
 import { Layout } from '@/layout';
 import { Home } from '@/pages/home';
 import { About } from '@/pages/about';
+import { SubAbout } from '@/pages/about/subAbout';
 import { TodoList } from '@/pages/todoList';
+import { Posts } from './pages/posts';
 
 const App = () => {
   return (
@@ -11,10 +13,11 @@ const App = () => {
       <Route path="/" element={<Layout />}>
         <Route path="home" element={<Home path={''} />} />
         <Route path="about" element={<About />}>
-          <Route index element={'a34a'}></Route>
+          <Route index element={<SubAbout />}></Route>
         </Route>
-        <Route path="dashboard" element={'dashbord'} />
+        <Route path="dashboard" element={<About />} />
         <Route path="todo-list" element={<TodoList />} />
+        <Route path="posts" element={<Posts />} />
         <Route
           path="sub1"
           element={

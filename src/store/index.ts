@@ -11,24 +11,28 @@
 import { configureStore, legacy_createStore } from '@reduxjs/toolkit';
 import counterReducer from './reducers/counterReducer';
 import todoListReducer from './reducers/todoListReducer';
+import postsReducer from './reducers/postsReducer';
 
 export const store = configureStore({
   reducer: {
     counter: counterReducer,
     todoList: todoListReducer,
+    posts: postsReducer,
   },
 });
 
 export type RootState = ReturnType<typeof store.getState>;
+export type RootDispatch = typeof store.dispatch;
 
 /**
  * redux
  */
 
-const countReducer = (state = { value: 0 }, action) => {
+const countReducer = (state = { value: 0 }, action: { type: any }) => {
   switch (action.type) {
     case 'counter/incremented':
-      return { value: state.value + 1 };
+      state.value + 1;
+      return state;
     case 'counter/decremented':
       return { value: state.value - 1 };
     default:

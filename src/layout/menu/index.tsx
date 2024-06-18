@@ -2,11 +2,14 @@ import React from 'react';
 import { memo } from 'react';
 import { Button, Menu } from 'antd';
 import { items } from './menuItems';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation, useHref } from 'react-router-dom';
 import css from './style.less';
 
 export const LayoutMenu = memo((props) => {
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const activekey = location.pathname;
 
   const handleMenuChange = (v: any) => {
     navigate(v.keyPath.reverse().join('/'));
@@ -18,8 +21,9 @@ export const LayoutMenu = memo((props) => {
         {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
       </Button> */}
       <Menu
-        defaultSelectedKeys={['1']}
-        defaultOpenKeys={['sub1']}
+        style={{ height: '100%' }}
+        defaultSelectedKeys={[activekey]}
+        defaultOpenKeys={['/sub1']}
         mode="inline"
         theme="dark"
         // inlineCollapsed={collapsed}

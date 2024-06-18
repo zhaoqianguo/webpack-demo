@@ -15,7 +15,7 @@ type InitialStateType = {
 
 let id = 0;
 
-export const todoListReducer = createSlice({
+export const todoListSlice = createSlice({
   name: 'todoListReducer',
   initialState: {
     todos: [],
@@ -36,6 +36,6 @@ export const todoListReducer = createSlice({
   },
 });
 
-export const { addTodo, todoDone, changeShowTodoType } = todoListReducer.actions;
+export const { addTodo, todoDone, changeShowTodoType } = todoListSlice.actions;
 
-export default todoListReducer.reducer;
+export default todoListSlice.reducer;
